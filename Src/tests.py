@@ -1,4 +1,9 @@
-from rubiksCubeNext import RubiksCube
+# from rubiksCubeNext import RubiksCube
+try:
+    from Src.Rubiks_Cube import RubiksCube
+except:
+    from Rubiks_Cube import RubiksCube
+
 import numpy as np
 
 
