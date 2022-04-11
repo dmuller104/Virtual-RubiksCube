@@ -16,7 +16,7 @@ def test1():
     cube.display_cube()
 
     print(np.unique(np.array(cube.cube),return_counts=True))
-    print('Rotate cube from bottom')
+    print('Right side forward')
     # rotate(cube,2,2)
     cube.rotate(2,2)
     cube.display_cube()
@@ -24,7 +24,12 @@ def test1():
     # np.array(cube)
     print(np.unique(np.array(cube.cube),return_counts=True))
 
+    # cube.compare(cube.create_cube(),display=True)
+
 def test2():
+    '''
+    Rotate cube 4 times, cube should be fully solved
+    '''
     cube = RubiksCube()
     cube.rotate(2,2)
     cube.rotate(2,2)
@@ -32,6 +37,9 @@ def test2():
     cube.rotate(2,2)
     cube.display_cube()
     print(np.unique(np.array(cube.cube),return_counts=True))
+
+    if cube.compare(cube.create_cube(),display=True) is True:
+        print("Solved")
 
 def test3():
     cube = RubiksCube()
@@ -54,9 +62,9 @@ def test4():
     i = 0
     while i == 0 or not cube.compare(cube2):
         if i % 2 == 0:
-            cube.rotate(2,1)
+            cube.rotate(2,2,numRotations=1)
         else:
-            cube.rotate(0,2)
+            cube.rotate(0,2,clockwise=False)
         i += 1
     print(i)
     pass
