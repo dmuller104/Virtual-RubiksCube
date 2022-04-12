@@ -1,14 +1,16 @@
 # from rubiksCubeNext import RubiksCube
 try:
     from Src.Rubiks_Cube import RubiksCube
+    from Src.Rubiks_Cube import UIRubiksCube
 except:
     from Rubiks_Cube import RubiksCube
+    from Rubiks_Cube import UIRubiksCube
 
 import numpy as np
 
 
 def main():
-    test4()
+    test5()
 
 def test1():
     cube = RubiksCube()
@@ -43,13 +45,10 @@ def test2():
 
 def test3():
     cube = RubiksCube()
-    for _ in range(105):
-        cube.rotate(2,2)
-        cube.rotate(0,2)
-    # cube.rotate(0,2)
-    # cube.rotate(0,2)
-    # cube.rotate(0,2)
-    # cube.rotate(0,2)
+    cube.rotate(0,2)
+    cube.rotate(0,2)
+    cube.rotate(0,2)
+    cube.rotate(0,2)
     expected = cube.create_cube()
     cube.compare(expected,display=True)
 
@@ -68,5 +67,27 @@ def test4():
         i += 1
     print(i)
     pass
+
+
+def test5():
+    '''
+    UIRubiksCube test
+    '''
+    cube = UIRubiksCube()
+    cube.rotate(0,0)
+    cube.rotate(2,2)
+    cube.rotate(0,2)
+
+    # cube.rotate(0,0,clockwise=False)
+    # cube.rotate(2,2)
+    cube.display_all()
+
+def test6():
+    cube = UIRubiksCube()
+    cube.rotate(2,1,clockwise=False)
+    cube.rotate(0,1)
+    cube.rotate(2,1)
+    cube.rotate(0,1,clockwise=False)
+    cube.display_face(1,0)
 
 main()

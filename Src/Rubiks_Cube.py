@@ -211,6 +211,63 @@ def compare(expected,tested,return_dict=False,display=False):
         return same
 
 
+class UIRubiksCube(RubiksCube):
+    def __init__(self):
+        super().__init__()
+        self.faces = ('Y','R','G','B','O','W',' ')
+    
+    def display_face(self,axis,pos):
+        if axis == 0:
+            for column in self.cube[pos][::1 if pos == 0 else -1]:
+                for cell in column:
+                    print(self.faces[cell[0]],end='')
+                print()
+        elif axis == 1:
+            for layer in self.cube[::-1]:
+                for cell in layer[pos][::-1 if pos == 2 else 1]:
+                    print(self.faces[cell[1]],end='')
+                print()
+        elif axis == 2:
+            for layer in self.cube[::-1]:
+                for column in layer[::-1 if pos==0 else 1]:
+                    print(self.faces[column[pos][2]],end='')
+                print()
+
+    def display_cube(self):
+        '''
+        Textually display cube, displays each layer,
+        first layer printed is bottom layer of cube
+        first line in printed layer is on face closest
+        to user. First characters in line are leftern 
+        cells in cube.
+        '''
+        for layer in self.cube:
+            print(10*'_')
+            # print('\n\n',end='')
+            for slice in layer:
+                print('\n',end='')
+                for cell in slice:
+                    print(cell,end=' ')
+        print()
+    
+    def display_all(self):
+        print("Front")
+        self.display_face(1,0)
+        print("\nBack")
+        self.display_face(1,2)
+        print("\nLeft")
+        self.display_face(2,0)
+        print("\nRight")
+        self.display_face(2,2)
+        print("\nTop")
+        self.display_face(0,2)
+        print("\nBottom")
+        self.display_face(0,0)
+
+
+
+
+
 
 
 
